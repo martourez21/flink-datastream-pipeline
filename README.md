@@ -15,17 +15,14 @@ A simple Apache Flink project that consumes Avro-serialized transactions from a 
 ### 1. Clone and Build
 
 ```bash
-git clone <repository-url>
-cd flink-avro-kafka
+git clone https://github.com/martourez21/flink-datastream-pipeline.git
+cd flink-datastream-pipeline
 mvn clean package
 ```
 
 ### 2. Start Kafka Services
 
 ```bash
-# Start Zookeeper
-zookeeper-server-start.sh $KAFKA_HOME/config/zookeeper.properties
-
 # Start Kafka
 kafka-server-start.sh $KAFKA_HOME/config/server.properties
 
@@ -59,10 +56,10 @@ Uses Flink's built-in Avro serialization without Schema Registry.
 
 ```bash
 # Run the application
-mvn exec:java -Dexec.mainClass="com.example.AvroKafkaPipeline"
+mvn exec:java -Dexec.mainClass="com.codedstreams.flinkpipeline.FlinkDataStreamPipelineApplication"
 
 # Or submit to Flink cluster
-flink run target/flink-avro-kafka-1.0-SNAPSHOT.jar
+flink run target/flink-datastream-pipeline-1.0-SNAPSHOT.jar
 ```
 
 ### 2. Custom Avro Serialization Pipeline
@@ -70,7 +67,7 @@ flink run target/flink-avro-kafka-1.0-SNAPSHOT.jar
 Provides manual control over Avro serialization/deserialization.
 
 ```bash
-mvn exec:java -Dexec.mainClass="com.example.TransactionAvroPipeline"
+mvn exec:java -Dexec.mainClass="com.codedstreams.flinkpipeline.FlinkDataStreamPipelineApplication"
 ```
 
 ### 3. Simple String Pipeline
@@ -78,7 +75,7 @@ mvn exec:java -Dexec.mainClass="com.example.TransactionAvroPipeline"
 For testing without Avro complexity.
 
 ```bash
-mvn exec:java -Dexec.mainClass="com.example.SimpleKafkaPipeline"
+mvn exec:java -Dexec.mainClass="com.codedstreams.flinkpipeline.FlinkDataStreamPipelineApplication"
 ```
 
 ## Testing the Pipeline
@@ -175,7 +172,7 @@ Received: txn-002 - Amount: 250.75 EUR
 
 ### 1. Local Execution
 ```bash
-mvn exec:java -Dexec.mainClass="com.example.AvroKafkaPipeline"
+mvn exec:java -Dexec.mainClass="com.codedstreams.flinkpipeline.FlinkDataStreamPipelineApplication"
 ```
 
 ### 2. Flink Cluster Submission
@@ -185,7 +182,7 @@ flink run target/flink-avro-kafka-1.0-SNAPSHOT.jar
 
 ### 3. Docker Deployment
 ```bash
-docker build -t flink-avro-kafka .
+docker build -t flink-datastream-pipeline .
 docker run --network host flink-avro-kafka
 ```
 
