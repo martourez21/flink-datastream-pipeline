@@ -228,7 +228,3 @@ mvn avro:schema
 ## License
 
 This project is for demonstration purposes and can be used as a template for Flink-Kafka-Avro integrations.
-
-## Contributing
-
-Feel free to submit issues and enhancement requests!
